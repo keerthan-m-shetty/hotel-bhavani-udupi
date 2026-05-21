@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,55 +15,11 @@
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Hotel Bhavani Udupi">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hotel Bhavani Udupi - Best Budget Hotel in Udupi">
-    <meta name="twitter:description" content="Comfortable budget accommodation in the heart of Udupi. Walking distance to Sri Krishna Temple.">
-
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Google Tag Manager -->
-    <script>
-    (function(w,d,s,l,i){
-      if (!i || i.includes('$')) return; // Skip if no valid ID
-      w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer', window.__GTM_ID || '');
-    </script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Google tag (gtag.js) for GA4 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-    </script>
-    <script>
-    (function() {
-      // GA4 will be initialized via environment config
-      fetch('/api/config').then(r => r.json()).then(config => {
-        if (config.gaId) {
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + config.gaId;
-          document.head.appendChild(s);
-          s.onload = function() {
-            gtag('js', new Date());
-            gtag('config', config.gaId);
-          };
-        }
-        if (config.gtmId) {
-          window.__GTM_ID = config.gtmId;
-        }
-      }).catch(function() {});
-    })();
-    </script>
 
     <!-- Structured Data - Hotel Schema -->
     <script type="application/ld+json">
@@ -88,41 +44,26 @@
         "longitude": "74.7496898"
       },
       "priceRange": "₹500 - ₹800",
-      "starRating": {
-        "@type": "Rating",
-        "ratingValue": "4.2"
-      },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.2",
         "reviewCount": "50",
         "bestRating": "5"
       },
-      "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Free WiFi"},
-        {"@type": "LocationFeatureSpecification", "name": "24-hour front desk"},
-        {"@type": "LocationFeatureSpecification", "name": "Room Service"}
-      ],
       "checkinTime": "12:00",
       "checkoutTime": "11:00",
       "currenciesAccepted": "INR",
-      "paymentAccepted": "Cash, UPI",
-      "numberOfRooms": "15",
-      "image": "https://www.hotelbhavaniudupi.in/",
-      "sameAs": [
-        "https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6"
-      ]
+      "paymentAccepted": "Cash, UPI"
     }
     </script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="about:blank" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <header class="header">
         <nav class="navbar">
-            <div class="logo">HOTEL BHAVANI UDUPI</div>
+            <div class="logo">
+                <span class="logo-icon">🏨</span>
+                <span class="logo-text">Hotel Bhavani</span>
+            </div>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -131,197 +72,353 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#rooms">Rooms</a></li>
                 <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#rooms">Rooms</a></li>
+                <li><a href="#nearby">Explore</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
         </nav>
     </header>
 
+    <!-- Hero Section - Compact -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">HOTEL BHAVANI UDUPI</h1>
-            <div class="hero-divider"></div>
-            <p class="hero-subtitle">Experience Authentic Hospitality in the Heart of Udupi</p>
-            <a href="#contact" class="cta-button">Book Your Stay</a>
+            <div class="hero-badge">Budget Friendly &bull; City Center &bull; Since 1990</div>
+            <h1 class="hero-title">Hotel Bhavani Udupi</h1>
+            <p class="hero-subtitle">Comfortable stays in the heart of temple city, just 5 mins walk from Sri Krishna Temple</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Book Now - ₹500/night</a>
+                <a href="#rooms" class="btn btn-outline">View Rooms</a>
+            </div>
+        </div>
+        <div class="hero-info-bar">
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <span>Chitranjan Circle, Udupi</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">🕐</span>
+                <span>Check-in: 12 PM | Check-out: 11 AM</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📞</span>
+                <a href="tel:08202526980">0820-2526980</a>
+            </div>
         </div>
     </section>
 
+    <!-- Quick Stats -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">4.2</span>
+                    <span class="stat-label">Google Rating</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">600m</span>
+                    <span class="stat-label">From Krishna Temple</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">₹500</span>
+                    <span class="stat-label">Starting Price</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">Years of Service</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title fade-in">Welcome to Hotel Bhavani</h2>
-            <div class="about-content">
-                <p class="about-text fade-in">
-                    Located in the cultural heart of Udupi city center, Hotel Bhavani offers comfortable budget hotel accommodations with authentic local hospitality. Our cheap hotel combines traditional warmth with affordable stays, making it the perfect choice for pilgrims, tourists, and business travelers visiting this sacred city.
-                </p>
-                
+            <div class="section-header fade-in">
+                <span class="section-tag">About Us</span>
+                <h2 class="section-title">Welcome to Hotel Bhavani</h2>
+                <p class="section-subtitle">Your home away from home in Udupi</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <p>Located at Chitranjan Circle in the cultural heart of Udupi, Hotel Bhavani has been serving guests with authentic local hospitality for over 30 years. Whether you're a pilgrim visiting Sri Krishna Temple, a tourist exploring coastal Karnataka, or a business traveler, we offer the perfect budget-friendly stay.</p>
+                </div>
                 <div class="features-grid">
                     <div class="feature-card fade-in">
-                        <span class="feature-icon">🏨</span>
-                        <h3>Budget Hotel Comfort</h3>
-                        <p>Well-appointed rooms with all essential amenities for a pleasant budget stay in Udupi city center</p>
+                        <span class="feature-icon">🛏️</span>
+                        <h3>Clean Rooms</h3>
+                        <p>Well-maintained rooms with fresh linen and essential amenities</p>
                     </div>
                     <div class="feature-card fade-in">
                         <span class="feature-icon">🏛️</span>
-                        <h3>Sri Krishna Temple</h3>
-                        <p>Visit the famous Udupi Sri Krishna Matha, just minutes away from our cheap hotel</p>
+                        <h3>Prime Location</h3>
+                        <p>5 min walk to Sri Krishna Temple & Udupi Bus Stand</p>
                     </div>
                     <div class="feature-card fade-in">
-                        <span class="feature-icon">🙏</span>
-                        <h3>Warm Hospitality</h3>
-                        <p>Experience genuine warmth and personalized service from our dedicated staff, making your stay truly memorable.</p>
+                        <span class="feature-icon">👨‍👩‍👧</span>
+                        <h3>Family Friendly</h3>
+                        <p>Safe, peaceful area perfect for families and solo travelers</p>
                     </div>
                     <div class="feature-card fade-in">
-                        <span class="feature-icon">🏖️</span>
-                        <h3>Malpe Beach Access</h3>
-                        <p>Relax at the pristine Malpe Beach, just 6km away with golden sands and water sports</p>
+                        <span class="feature-icon">💰</span>
+                        <h3>Best Value</h3>
+                        <p>Most affordable rates in Udupi city center</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rooms" class="rooms">
-        <div class="container">
-            <h2 class="section-title fade-in">Our Budget Hotel Rooms</h2>
-            <div class="rooms-grid">
-                <div class="room-card fade-in">
-                    <h3>Single Bedroom</h3>
-                    <p>Perfect for solo travelers, our hotel rooms offer comfort and privacy with all basic amenities in Udupi city center.</p>
-                    <div class="room-price">₹500/night</div>
-                    <button class="book-btn" onclick="bookRoom('Single Bed Room', '500')">Book Now</button>
-                </div>
-                <div class="room-card fade-in">
-                    <h3>Double Bedroom</h3>
-                    <p>Spacious double rooms for single occupancy with extra comfort and space - best value in our budget hotel.</p>
-                    <div class="room-price">₹600/night</div>
-                    <button class="book-btn" onclick="bookRoom('Double Bed Room', '600')">Book Now</button>
-                </div>
-                <div class="room-card fade-in">
-                    <h3>Triple Bedroom</h3>
-                    <p>Ideal for small groups or families, our triple bedrooms offer simple and spacious accommodation.</p>
-                    <div class="room-price">₹800/night</div>
-                    <button class="book-btn" onclick="bookRoom('Three Bed Room', '800')">Book Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Reviews Section - Moved Up -->
     <section id="reviews" class="reviews">
         <div class="container">
-            <h2 class="section-title fade-in">What Our Guests Say</h2>
+            <div class="section-header fade-in">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">Loved by Our Guests</h2>
+                <p class="section-subtitle">Real reviews from real travelers</p>
+            </div>
             <div class="reviews-grid">
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Room was clean, and location of hotel near to Udupi Bus stand and Just 600 meter from Lord Krishna Temple. Staff is good. Peaceful area and city heart area."</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Prashant Kulkarni</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Rooms 5.0</span>
-                        <span class="review-tag">Service 5.0</span>
-                        <span class="review-tag">Location 5.0</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">PK</span>
+                            <div>
+                                <span class="reviewer-name">Prashant Kulkarni</span>
+                                <span class="review-type">Holiday &bull; Solo</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Very good and clean rooms. A nice stay at reasonable cost. Staff is also good. At a Walkable distance from Krishna math."</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Kedar Kulkarni</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Rooms 5.0</span>
-                        <span class="review-tag">Service 5.0</span>
-                        <span class="review-tag">Location 5.0</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">KK</span>
+                            <div>
+                                <span class="reviewer-name">Kedar Kulkarni</span>
+                                <span class="review-type">Business Trip</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"5 mins walkable distance to Krishna Mutt and Udupi City. Recommended for people who are looking for budget friendly hotel with all basic facilities."</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Just for fun</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Rooms 5.0</span>
-                        <span class="review-tag">Service 5.0</span>
-                        <span class="review-tag">Location 5.0</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">JF</span>
+                            <div>
+                                <span class="reviewer-name">Just for fun</span>
+                                <span class="review-type">Holiday</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Budget friendly hotel, good spacious hotel, its in the main road or circle itself (Chitranjan circle), close to Krishna Matha temple u can just walk and go."</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Usha</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Rooms 4.0</span>
-                        <span class="review-tag">Service 4.0</span>
-                        <span class="review-tag">Location 5.0</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">U</span>
+                            <div>
+                                <span class="reviewer-name">Usha</span>
+                                <span class="review-type">Pilgrimage</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Hotel within budget for students and travellers. Great location and comfortable stay!"</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Sai Kishore</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Rooms 5.0</span>
-                        <span class="review-tag">Service 5.0</span>
-                        <span class="review-tag">Location 5.0</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">SK</span>
+                            <div>
+                                <span class="reviewer-name">Sai Kishore</span>
+                                <span class="review-type">Student Trip</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
                 <div class="review-card fade-in">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Best staff and best voice speak with customer. Good and best Hotel! Next time coming for sure."</p>
-                    <div class="review-meta">
-                        <span class="reviewer-name">Sachin Kammar</span>
-                        <span class="review-source">Google Reviews</span>
-                    </div>
-                    <div class="review-tags">
-                        <span class="review-tag">Great Staff</span>
-                        <span class="review-tag">Hospitality</span>
-                        <span class="review-tag">Recommended</span>
+                    <div class="review-footer">
+                        <div class="reviewer-info">
+                            <span class="reviewer-avatar">SK</span>
+                            <div>
+                                <span class="reviewer-name">Sachin Kammar</span>
+                                <span class="review-type">Repeat Guest</span>
+                            </div>
+                        </div>
+                        <span class="review-source">Google</span>
                     </div>
                 </div>
             </div>
             <div class="reviews-cta fade-in">
-                <a href="https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6" target="_blank" class="google-reviews-btn">See All Google Reviews</a>
+                <a href="https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6" target="_blank" class="btn btn-secondary">See All Reviews on Google Maps</a>
             </div>
         </div>
     </section>
 
+    <!-- Rooms Section -->
+    <section id="rooms" class="rooms">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Accommodation</span>
+                <h2 class="section-title">Our Rooms</h2>
+                <p class="section-subtitle">Simple, clean, and comfortable</p>
+            </div>
+            <div class="rooms-grid">
+                <div class="room-card fade-in">
+                    <div class="room-badge">Popular</div>
+                    <div class="room-header">
+                        <h3>Single Bedroom</h3>
+                        <div class="room-price">₹500<span>/night</span></div>
+                    </div>
+                    <p>Perfect for solo travelers with all basic amenities.</p>
+                    <ul class="room-amenities">
+                        <li>Single Bed</li>
+                        <li>Attached Bathroom</li>
+                        <li>Fan & Light</li>
+                        <li>Clean Linen</li>
+                    </ul>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Single Bed Room', '500')">Book Now</button>
+                </div>
+                <div class="room-card featured fade-in">
+                    <div class="room-badge">Best Value</div>
+                    <div class="room-header">
+                        <h3>Double Bedroom</h3>
+                        <div class="room-price">₹600<span>/night</span></div>
+                    </div>
+                    <p>Spacious room with extra comfort for couples or solo travelers wanting more space.</p>
+                    <ul class="room-amenities">
+                        <li>Double Bed</li>
+                        <li>Attached Bathroom</li>
+                        <li>Fan & Light</li>
+                        <li>Clean Linen</li>
+                    </ul>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Double Bed Room', '600')">Book Now</button>
+                </div>
+                <div class="room-card fade-in">
+                    <div class="room-badge">Family</div>
+                    <div class="room-header">
+                        <h3>Triple Bedroom</h3>
+                        <div class="room-price">₹800<span>/night</span></div>
+                    </div>
+                    <p>Ideal for families or small groups needing extra beds.</p>
+                    <ul class="room-amenities">
+                        <li>Three Beds</li>
+                        <li>Attached Bathroom</li>
+                        <li>Fan & Light</li>
+                        <li>Clean Linen</li>
+                    </ul>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Three Bed Room', '800')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nearby Attractions -->
+    <section id="nearby" class="nearby">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Explore Udupi</span>
+                <h2 class="section-title">Nearby Attractions</h2>
+                <p class="section-subtitle">Discover what makes Udupi special</p>
+            </div>
+            <div class="nearby-grid">
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🛕</span>
+                    <h3>Sri Krishna Temple</h3>
+                    <p>Famous 13th-century temple, the spiritual heart of Udupi</p>
+                    <span class="nearby-distance">600m &bull; 5 min walk</span>
+                </div>
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🏖️</span>
+                    <h3>Malpe Beach</h3>
+                    <p>Pristine beach with golden sands and water sports</p>
+                    <span class="nearby-distance">6 km &bull; 15 min drive</span>
+                </div>
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🏝️</span>
+                    <h3>St. Mary's Island</h3>
+                    <p>Unique hexagonal rock formations, a geological wonder</p>
+                    <span class="nearby-distance">10 km &bull; Boat from Malpe</span>
+                </div>
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🎓</span>
+                    <h3>Manipal University</h3>
+                    <p>Renowned educational hub, just a short drive away</p>
+                    <span class="nearby-distance">5 km &bull; 10 min drive</span>
+                </div>
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🍛</span>
+                    <h3>Udupi Cuisine</h3>
+                    <p>Famous vegetarian restaurants within walking distance</p>
+                    <span class="nearby-distance">200m &bull; 2 min walk</span>
+                </div>
+                <div class="nearby-card fade-in">
+                    <span class="nearby-icon">🚌</span>
+                    <h3>Udupi Bus Stand</h3>
+                    <p>Main bus terminus with connections to all major cities</p>
+                    <span class="nearby-distance">400m &bull; 5 min walk</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title fade-in">Contact Us</h2>
+            <div class="section-header fade-in">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Book Your Stay</h2>
+                <p class="section-subtitle">Call us or fill the form - we'll confirm on WhatsApp</p>
+            </div>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item fade-in">
-                        <h3>📞 Phone</h3>
-                        <p><a href="tel:08202526980">0820-2526980</a></p>
-                        <p><small>Call one day before arrival<br>Working hours: 6 AM to 10 PM</small></p>
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">📞</div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <a href="tel:08202526980">0820-2526980</a>
+                            <p class="contact-note">6 AM to 10 PM &bull; Call one day before</p>
+                        </div>
                     </div>
-                    <div class="contact-item fade-in">
-                        <h3>📍 Location - City Center</h3>
-                        <p>Hotel Bhavani<br>Chitranjan Circle, Udupi City Center<br>Karnataka 576101, India</p>
-                        <p><a href="https://maps.app.goo.gl/rUqgw5P26rpN5SKT9" target="_blank">View on Google Maps</a></p>
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">💬</div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <a href="javascript:void(0)" onclick="openWhatsApp()">Message Us Instantly</a>
+                            <p class="contact-note">Quick booking & inquiries</p>
+                        </div>
                     </div>
-                    <div class="contact-item fade-in">
-                        <h3>💬 WhatsApp</h3>
-                        <p>Quick booking and inquiries for budget hotel</p>
-                        <p><a href="javascript:void(0)" onclick="openWhatsApp()">Message us on WhatsApp</a></p>
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">📍</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Hotel Bhavani, Chitranjan Circle<br>Udupi, Karnataka 576101</p>
+                            <a href="https://maps.app.goo.gl/rUqgw5P26rpN5SKT9" target="_blank">Open in Google Maps</a>
+                        </div>
                     </div>
-                    <div class="contact-item contact-map fade-in">
+                    <div class="contact-map fade-in">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387.5!2d74.7494527!3d13.3401827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbcbb6f6cd39b27%3A0x5102066fa6332ce5!2sHotel%20Bhavani%20Boarding%20%26%20Lodging!5e1!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                             width="100%" 
                             height="200" 
-                            style="border:0; border-radius: 10px;" 
+                            style="border:0; border-radius: 12px;" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade"
@@ -331,39 +428,41 @@
                 </div>
                 
                 <div class="contact-form fade-in">
-                    <h3>Make a Reservation</h3>
+                    <h3>Quick Reservation</h3>
                     <form id="reservationForm">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Email Address" required>
+                                <input type="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" placeholder="Phone Number" required>
+                                <input type="tel" name="phone" placeholder="Phone" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <select name="roomType" required>
                                 <option value="">Select Room Type</option>
                                 <option value="Single Room - ₹500">Single Bed Room - ₹500</option>
-                                <option value="Double Room Single Occupancy - ₹600">Double Bed Room - ₹600</option>
-                                <option value="Double Room with TV - ₹800">Triple Bed Room - ₹800</option>
+                                <option value="Double Room - ₹600">Double Bed Room - ₹600</option>
+                                <option value="Triple Room - ₹800">Triple Bed Room - ₹800</option>
                             </select>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="date" name="checkin" placeholder="Check-in Date" required>
+                                <label class="form-label">Check-in</label>
+                                <input type="date" name="checkin" required>
                             </div>
                             <div class="form-group">
-                                <input type="date" name="checkout" placeholder="Check-out Date" required>
+                                <label class="form-label">Check-out</label>
+                                <input type="date" name="checkout" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Special Requests (Optional)" rows="4"></textarea>
+                            <textarea name="message" placeholder="Special Requests (Optional)" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Send WhatsApp Message</button>
+                        <button type="submit" class="btn btn-primary btn-full">Send via WhatsApp</button>
                     </form>
                 </div>
             </div>
@@ -372,7 +471,19 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> Hotel Bhavani Udupi - Best Hotel in Udupi | Budget Hotel | Cheap Hotel City Center. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🏨</span>
+                    <span>Hotel Bhavani Udupi</span>
+                </div>
+                <p class="footer-tagline">Budget-friendly stays in the heart of temple city since 1990</p>
+                <div class="footer-links">
+                    <a href="https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6" target="_blank">Google Maps</a>
+                    <a href="tel:08202526980">Call Us</a>
+                    <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a>
+                </div>
+                <p class="footer-copy">&copy; <span id="currentYear"></span> Hotel Bhavani Udupi. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
