@@ -9,8 +9,10 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   
-  // Return the phone number from environment variable
+  // Return config from environment variables
   res.status(200).json({
-    phone: process.env.PHONE_NUMBER
+    phone: process.env.PHONE_NUMBER,
+    gaId: process.env.NEXT_PUBLIC_GA_ID || '',
+    gtmId: process.env.NEXT_PUBLIC_GTM_ID || ''
   });
 }
