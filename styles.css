@@ -372,6 +372,16 @@ section { padding: 80px 0; }
 }
 .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
 
+/* ===== LOCATION FLOAT ===== */
+.location-float {
+    position: fixed; bottom: 24px; left: 24px;
+    width: 56px; height: 56px; background: var(--accent); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(232,138,26,0.4); z-index: 999;
+    transition: all var(--transition);
+}
+.location-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(232,138,26,0.5); }
+
 /* ===== FOOTER ===== */
 .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 3rem 0; }
 .footer-content { text-align: center; }
@@ -419,6 +429,7 @@ section { padding: 80px 0; }
     .carousel-arrow { display: none; }
     .nearby-grid { grid-template-columns: 1fr 1fr; }
     .whatsapp-float { bottom: 16px; right: 16px; width: 50px; height: 50px; }
+    .location-float { bottom: 16px; left: 16px; width: 50px; height: 50px; }
     .logo-text { font-size: 1.1rem; }
     .hero-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; max-width: 280px; }
