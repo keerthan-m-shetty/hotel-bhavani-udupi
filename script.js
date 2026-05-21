@@ -207,6 +207,12 @@ function initReviewsCarousel() {
     createDots();
     startAutoPlay();
 
+    // Arrow buttons
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    if (prevBtn) prevBtn.addEventListener('click', () => { scrollToCard(currentIndex - 1); startAutoPlay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { scrollToCard(currentIndex + 1); startAutoPlay(); });
+
     track.addEventListener('mouseenter', stopAutoPlay);
     track.addEventListener('mouseleave', startAutoPlay);
     track.addEventListener('touchstart', stopAutoPlay, { passive: true });
