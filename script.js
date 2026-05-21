@@ -125,10 +125,99 @@ async function openWhatsApp(roomType = '', price = '') {
 
 function bookRoom(roomType, price) { openWhatsApp(roomType, price); }
 
+// ===== Reviews Carousel =====
+function initReviewsCarousel() {
+    const track = document.getElementById('reviewsTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+    if (!track || !dotsContainer) return;
+
+    const cards = track.querySelectorAll('.review-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let cardsPerView = getCardsPerView();
+    let autoPlayInterval;
+
+    function getCardsPerView() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+
+    function getTotalSlides() {
+        return Math.ceil(totalCards / cardsPerView);
+    }
+
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const totalSlides = getTotalSlides();
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        const totalSlides = getTotalSlides();
+        currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
+        const offset = currentIndex * cardsPerView;
+        const cardWidth = 100 / cardsPerView;
+        track.style.transform = `translateX(-${offset * cardWidth}%)`;
+        updateDots();
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+
+    // Set card widths
+    function setCardWidths() {
+        cardsPerView = getCardsPerView();
+        const cardWidth = 100 / cardsPerView;
+        cards.forEach(card => {
+            card.style.minWidth = `calc(${cardWidth}% - 1rem)`;
+        });
+        createDots();
+        goToSlide(0);
+    }
+
+    setCardWidths();
+    startAutoPlay();
+
+    // Pause on hover
+    track.addEventListener('mouseenter', stopAutoPlay);
+    track.addEventListener('mouseleave', startAutoPlay);
+
+    // Recalculate on resize
+    window.addEventListener('resize', () => {
+        setCardWidths();
+        startAutoPlay();
+    });
+}
+
 // ===== Form Submission =====
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     initMobileMenu();
+    initReviewsCarousel();
     
     // Dynamic year
     const yearEl = document.getElementById('currentYear');
