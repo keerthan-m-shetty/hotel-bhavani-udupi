@@ -15,14 +15,46 @@ async function getPhoneNumber() {
   }
 }
 
+// Mobile hamburger menu
+function initMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (!hamburger || !navMenu) return;
+
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
+
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Close menu when a nav link is clicked
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+}
+
 // Simple client-side routing
 function initializeRouting() {
-    // Handle browser back/forward buttons
     window.addEventListener('popstate', function(event) {
         handleRoute(window.location.pathname);
     });
-
-    // Handle initial page load
     handleRoute(window.location.pathname);
 }
 
@@ -38,8 +70,7 @@ function handleRoute(path) {
 }
 
 function showMainPage() {
-    // Show all main sections
-    const sections = ['home', 'about', 'rooms', 'contact'];
+    const sections = ['home', 'about', 'rooms', 'reviews', 'contact'];
     sections.forEach(sectionId => {
         const section = document.getElementById(sectionId);
         if (section) {
@@ -47,7 +78,6 @@ function showMainPage() {
         }
     });
     
-    // Hide form success page if it exists
     const successPage = document.getElementById('form-success-page');
     if (successPage) {
         successPage.style.display = 'none';
@@ -55,8 +85,7 @@ function showMainPage() {
 }
 
 function showFormSuccessPage() {
-    // Hide all main sections
-    const sections = ['home', 'about', 'rooms', 'contact'];
+    const sections = ['home', 'about', 'rooms', 'reviews', 'contact'];
     sections.forEach(sectionId => {
         const section = document.getElementById(sectionId);
         if (section) {
@@ -64,7 +93,6 @@ function showFormSuccessPage() {
         }
     });
     
-    // Show or create form success page
     let successPage = document.getElementById('form-success-page');
     if (!successPage) {
         createFormSuccessPage();
@@ -72,7 +100,6 @@ function showFormSuccessPage() {
         successPage.style.display = 'block';
     }
     
-    // Track conversion with Google Tag Manager
     trackConversion();
 }
 
@@ -95,7 +122,6 @@ function createFormSuccessPage() {
         </div>
     `;
     
-    // Add CSS for success page
     const style = document.createElement('style');
     style.textContent = `
         .form-success-page {
@@ -107,7 +133,6 @@ function createFormSuccessPage() {
             color: white;
             padding: 2rem 0;
         }
-        
         .success-content {
             text-align: center;
             max-width: 600px;
@@ -117,77 +142,28 @@ function createFormSuccessPage() {
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .success-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-        }
-        
+        .success-icon { font-size: 4rem; margin-bottom: 2rem; }
         .success-content h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: #d4af37;
         }
-        
-        .success-content p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-        
-        .success-actions {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
+        .success-content p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem; opacity: 0.9; }
+        .success-actions { margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .back-btn, .call-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 15px 30px; border: none; border-radius: 50px;
+            font-size: 1rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; text-decoration: none;
+            display: inline-block; text-transform: uppercase; letter-spacing: 1px;
         }
-        
-        .back-btn {
-            background: linear-gradient(45deg, #d4af37, #f1c40f);
-            color: white;
-        }
-        
-        .call-btn {
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            color: white;
-        }
-        
-        .back-btn:hover, .call-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
+        .back-btn { background: linear-gradient(45deg, #d4af37, #f1c40f); color: white; }
+        .call-btn { background: linear-gradient(45deg, #27ae60, #2ecc71); color: white; }
+        .back-btn:hover, .call-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
         @media (max-width: 768px) {
-            .success-content h1 {
-                font-size: 2rem;
-            }
-            
-            .success-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .back-btn, .call-btn {
-                width: 100%;
-                max-width: 250px;
-            }
+            .success-content h1 { font-size: 2rem; }
+            .success-actions { flex-direction: column; align-items: center; }
+            .back-btn, .call-btn { width: 100%; max-width: 250px; }
         }
     `;
     
@@ -206,7 +182,6 @@ function navigateToFormSuccess() {
 }
 
 function trackConversion() {
-    // Track conversion with Google Tag Manager
     if (typeof dataLayer !== 'undefined') {
         dataLayer.push({
             'event': 'form_submission',
@@ -216,7 +191,6 @@ function trackConversion() {
         });
     }
     
-    // Track conversion with gtag (if using Google Analytics directly)
     if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', {
             'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
@@ -277,7 +251,6 @@ if (checkinInput) {
     checkinInput.setAttribute('min', today);
 }
 
-// Set minimum checkout date based on checkin
 if (checkinInput && checkoutInput) {
     checkinInput.addEventListener('change', function() {
         const checkinDate = new Date(this.value);
@@ -287,7 +260,15 @@ if (checkinInput && checkoutInput) {
     });
 }
 
-// WhatsApp functionality - Updated to use API
+// Dynamic copyright year
+function updateCopyrightYear() {
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+}
+
+// WhatsApp functionality
 async function openWhatsApp(roomType = '', price = '') {
     try {
         const phone = await getPhoneNumber();
@@ -297,26 +278,15 @@ async function openWhatsApp(roomType = '', price = '') {
             return;
         }
 
-        let message = `Hello Hotel Bhavani Udupi!
-
-I would like to make a booking inquiry.`;
+        let message = `Hello Hotel Bhavani Udupi!\n\nI would like to make a booking inquiry.`;
 
         if (roomType && price) {
-            message += `
-
-Room Type: ${roomType}
-Price: ₹${price}/night
-
-Please confirm availability and provide booking details.`;
+            message += `\n\nRoom Type: ${roomType}\nPrice: ₹${price}/night\n\nPlease confirm availability and provide booking details.`;
         } else {
-            message += `
-
-Please provide information about room availability and booking process.`;
+            message += `\n\nPlease provide information about room availability and booking process.`;
         }
 
-        message += `
-
-Thank you!`;
+        message += `\n\nThank you!`;
 
         const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, '_blank');
@@ -330,10 +300,16 @@ function bookRoom(roomType, price) {
     openWhatsApp(roomType, price);
 }
 
-// Form submission - Updated to use API
+// Form submission
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize routing
     initializeRouting();
+    
+    // Initialize mobile menu
+    initMobileMenu();
+    
+    // Update copyright year
+    updateCopyrightYear();
     
     const reservationForm = document.getElementById('reservationForm');
     if (reservationForm) {
@@ -353,27 +329,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const message = formData.get('message');
 
                 if (name && email && userPhone && roomType && checkin && checkout) {
-                    const bookingMessage = `Hotel Bhavani Udupi - Booking Request
-
-👤 Name: ${name}
-📧 Email: ${email}
-📱 Phone: ${userPhone}
-🏨 Room Type: ${roomType}
-📅 Check-in: ${checkin}
-📅 Check-out: ${checkout}
-💬 Message: ${message || 'None'}
-
-Please confirm availability and booking details.
-
-Thank you!`;
+                    const bookingMessage = `Hotel Bhavani Udupi - Booking Request\n\n👤 Name: ${name}\n📧 Email: ${email}\n📱 Phone: ${userPhone}\n🏨 Room Type: ${roomType}\n📅 Check-in: ${checkin}\n📅 Check-out: ${checkout}\n💬 Message: ${message || 'None'}\n\nPlease confirm availability and booking details.\n\nThank you!`;
 
                     const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(bookingMessage)}`;
                     window.open(whatsappURL, '_blank');
                     
-                    // Navigate to success page
                     navigateToFormSuccess();
-                    
-                    // Reset form
                     this.reset();
                 } else {
                     alert('Please fill in all required fields.');
