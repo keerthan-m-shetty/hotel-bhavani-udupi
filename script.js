@@ -134,49 +134,50 @@ function initReviewsCarousel() {
     const cards = track.querySelectorAll('.review-card');
     const totalCards = cards.length;
     let currentIndex = 0;
-    let cardsPerView = getCardsPerView();
     let autoPlayInterval;
 
-    function getCardsPerView() {
+    function getVisibleCards() {
+        if (window.innerWidth <= 480) return 1;
         if (window.innerWidth <= 768) return 1;
         if (window.innerWidth <= 1024) return 2;
         return 3;
     }
 
-    function getTotalSlides() {
-        return Math.ceil(totalCards / cardsPerView);
+    function getTotalDots() {
+        return Math.max(1, totalCards - getVisibleCards() + 1);
     }
 
     function createDots() {
         dotsContainer.innerHTML = '';
-        const totalSlides = getTotalSlides();
-        for (let i = 0; i < totalSlides; i++) {
+        const total = getTotalDots();
+        for (let i = 0; i < total; i++) {
             const dot = document.createElement('button');
             dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            dot.addEventListener('click', () => goToSlide(i));
+            dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+            dot.addEventListener('click', () => scrollToCard(i));
             dotsContainer.appendChild(dot);
         }
     }
 
     function updateDots() {
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
     }
 
-    function goToSlide(index) {
-        const totalSlides = getTotalSlides();
-        currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
-        const offset = currentIndex * cardsPerView;
-        const cardWidth = 100 / cardsPerView;
-        track.style.transform = `translateX(-${offset * cardWidth}%)`;
+    function scrollToCard(index) {
+        const total = getTotalDots();
+        currentIndex = Math.max(0, Math.min(index, total - 1));
+        const card = cards[currentIndex];
+        if (card) {
+            track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+        }
         updateDots();
     }
 
     function nextSlide() {
-        goToSlide(currentIndex + 1);
+        const total = getTotalDots();
+        currentIndex = (currentIndex + 1) % total;
+        scrollToCard(currentIndex);
     }
 
     function startAutoPlay() {
@@ -188,29 +189,30 @@ function initReviewsCarousel() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
     }
 
-    // Set card widths
-    function setCardWidths() {
-        cardsPerView = getCardsPerView();
-        const cardWidth = 100 / cardsPerView;
-        cards.forEach(card => {
-            card.style.minWidth = `calc(${cardWidth}% - 1rem)`;
+    // Update current dot on manual scroll
+    track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        let closest = 0;
+        let minDist = Infinity;
+        cards.forEach((card, i) => {
+            const dist = Math.abs(card.offsetLeft - track.offsetLeft - scrollLeft);
+            if (dist < minDist) { minDist = dist; closest = i; }
         });
-        createDots();
-        goToSlide(0);
-    }
+        if (closest !== currentIndex) {
+            currentIndex = Math.min(closest, getTotalDots() - 1);
+            updateDots();
+        }
+    });
 
-    setCardWidths();
+    createDots();
     startAutoPlay();
 
-    // Pause on hover
     track.addEventListener('mouseenter', stopAutoPlay);
     track.addEventListener('mouseleave', startAutoPlay);
+    track.addEventListener('touchstart', stopAutoPlay, { passive: true });
+    track.addEventListener('touchend', () => setTimeout(startAutoPlay, 3000));
 
-    // Recalculate on resize
-    window.addEventListener('resize', () => {
-        setCardWidths();
-        startAutoPlay();
-    });
+    window.addEventListener('resize', createDots);
 }
 
 // ===== Form Submission =====
