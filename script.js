@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     initMobileMenu();
     initReviewsCarousel();
+    initChatbot();
     
     // Dynamic year
     const yearEl = document.getElementById('currentYear');
@@ -256,3 +257,102 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+// ===== FAQ Chatbot =====
+function initChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    const toggle = document.getElementById('chatbotToggle');
+    const closeBtn = document.getElementById('chatbotClose');
+    const input = document.getElementById('chatbotInput');
+    const sendBtn = document.getElementById('chatbotSend');
+    const messages = document.getElementById('chatbotMessages');
+    const suggestions = document.getElementById('chatbotSuggestions');
+
+    if (!chatbot || !toggle) return;
+
+    // FAQ database
+    const faqs = [
+        { keywords: ['price', 'rate', 'cost', 'tariff', 'how much', 'charge', 'rupee', '₹'], answer: 'Our room rates:\n• Single Bedroom (1 bed): ₹500/night\n• Double Bedroom (2 beds): ₹600/night\n• Triple Bedroom (3 beds): ₹800/night\n\nAll rooms include attached bathroom, fan, light, and clean linen.' },
+        { keywords: ['location', 'where', 'address', 'direction', 'how to reach', 'find'], answer: 'We\'re at Chitranjan Circle, Udupi City Center, Karnataka 576101.\n\nJust 600m (5 min walk) from Sri Krishna Temple and Udupi Bus Stand.\n\n📍 <a href="https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6" target="_blank">Open in Google Maps</a>' },
+        { keywords: ['check in', 'checkin', 'check-in', 'check out', 'checkout', 'check-out', 'timing'], answer: 'Check-in: 6 AM to 11 PM\nStay: 24 hours from check-in\n\nPlease call one day before arrival to confirm your booking.' },
+        { keywords: ['book', 'reserve', 'reservation', 'available', 'vacancy'], answer: 'You can book via WhatsApp for instant confirmation!\n\n📱 <a href="javascript:void(0)" onclick="openWhatsApp()">Message us on WhatsApp</a>\n📞 Or call: <a href="tel:08202526980">0820-2526980</a> (6 AM - 10 PM)' },
+        { keywords: ['phone', 'call', 'contact', 'number', 'mobile'], answer: '📞 Phone: <a href="tel:08202526980">0820-2526980</a>\n⏰ Working hours: 6 AM to 10 PM\n💬 <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a> (anytime)' },
+        { keywords: ['temple', 'krishna', 'matha', 'math', 'mutt'], answer: 'Sri Krishna Temple is just 600 meters away — a 5 minute walk from our hotel! Perfect for pilgrims visiting the temple.' },
+        { keywords: ['beach', 'malpe', 'st mary', 'island'], answer: 'Malpe Beach is 6 km away (15 min drive). St. Mary\'s Island is accessible by boat from Malpe.\n\nWe can help arrange an auto/taxi!' },
+        { keywords: ['bus', 'stand', 'station', 'transport'], answer: 'Udupi Bus Stand is just 400m away (5 min walk). We\'re in the city center with easy access to all transport.' },
+        { keywords: ['wifi', 'internet', 'tv', 'ac', 'air condition', 'amenities', 'facility'], answer: 'Our rooms include:\n✓ Attached bathroom\n✓ Fan & light\n✓ Clean linen\n✓ 24-hour water\n\nWe\'re a budget hotel focused on clean, comfortable basics.' },
+        { keywords: ['food', 'restaurant', 'breakfast', 'meal', 'eat'], answer: 'We don\'t have an in-house restaurant, but famous Udupi vegetarian restaurants are within 200m walking distance! The area is known for authentic South Indian food.' },
+        { keywords: ['family', 'children', 'kid', 'safe'], answer: 'Yes! We\'re family-friendly. Our triple bedroom (₹800/night) with 3 beds is perfect for families. The area is peaceful and safe.' },
+        { keywords: ['cancel', 'refund', 'policy'], answer: 'Please call us at least one day before to cancel or modify your booking. No advance payment is needed — pay at check-in.' },
+        { keywords: ['parking', 'car', 'bike', 'vehicle'], answer: 'Limited parking is available nearby. For two-wheelers, parking is usually easy to find. Please ask at reception on arrival.' },
+        { keywords: ['manipal', 'college', 'university', 'student'], answer: 'Manipal University is just 5 km away (10 min drive). We\'re popular with students and their visiting families due to our budget rates!' },
+        { keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'namaste'], answer: 'Namaste! 🙏 Welcome to Hotel Bhavani Udupi. How can I help you today?\n\nYou can ask about room prices, location, check-in times, or booking.' },
+        { keywords: ['ok', 'okay', 'thanks', 'thank you', 'thank', 'got it', 'cool', 'great', 'perfect', 'nice', 'good', 'bye', 'goodbye', 'see you', 'that\'s all'], answer: 'Glad I could help! 😊 We look forward to welcoming you at Hotel Bhavani. Have a great day!\n\nIf you need anything else, just ask or reach us on <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a>.' },
+    ];
+
+    const fallbackAnswer = 'I\'m not sure about that. You can:\n\n📱 <a href="javascript:void(0)" onclick="openWhatsApp()">Ask on WhatsApp</a>\n📞 Call: <a href="tel:08202526980">0820-2526980</a>\n\nOr try asking about: rooms, prices, location, check-in, or booking.';
+
+    function openChat() {
+        chatbot.classList.add('open');
+        toggle.classList.add('hidden');
+        input.focus();
+    }
+
+    function closeChat() {
+        chatbot.classList.remove('open');
+        toggle.classList.remove('hidden');
+    }
+
+    function addMessage(text, sender) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-msg ' + sender;
+        msg.innerHTML = '<p>' + text.replace(/\n/g, '<br>') + '</p>';
+        messages.appendChild(msg);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function getAnswer(question) {
+        const q = question.toLowerCase().trim();
+        for (const faq of faqs) {
+            for (const keyword of faq.keywords) {
+                if (q.includes(keyword)) {
+                    return faq.answer;
+                }
+            }
+        }
+        return fallbackAnswer;
+    }
+
+    function handleSend() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        addMessage(text, 'user');
+        input.value = '';
+
+        // Hide suggestions after first interaction
+        if (suggestions) suggestions.style.display = 'none';
+
+        // Simulate typing delay
+        setTimeout(() => {
+            const answer = getAnswer(text);
+            addMessage(answer, 'bot');
+        }, 400);
+    }
+
+    // Event listeners
+    toggle.addEventListener('click', openChat);
+    closeBtn.addEventListener('click', closeChat);
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+
+    // Suggestion buttons
+    document.querySelectorAll('.suggestion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            input.value = btn.dataset.q;
+            handleSend();
+        });
+    });
+}
