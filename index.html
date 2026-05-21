@@ -492,6 +492,32 @@
         </div>
     </footer>
 
+    <!-- Chatbot Widget -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            <span class="chatbot-title">🏨 Hotel Bhavani</span>
+            <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chat-msg bot">
+                <p>Namaste! 🙏 Welcome to Hotel Bhavani Udupi. How can I help you?</p>
+            </div>
+            <div class="chatbot-suggestions" id="chatbotSuggestions">
+                <button class="suggestion-btn" data-q="room price">Room prices</button>
+                <button class="suggestion-btn" data-q="location">Location</button>
+                <button class="suggestion-btn" data-q="check in time">Check-in time</button>
+                <button class="suggestion-btn" data-q="book a room">Book a room</button>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your question..." autocomplete="off">
+            <button id="chatbotSend" aria-label="Send message">➤</button>
+        </div>
+    </div>
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+        <span class="chatbot-toggle-icon">💬</span>
+    </button>
+
     <!-- Floating Location Button (Google Maps) -->
     <a href="https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6" target="_blank" class="location-float" aria-label="Get Directions on Google Maps">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.3 132.3" width="24" height="24">
