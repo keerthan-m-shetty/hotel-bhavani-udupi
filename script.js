@@ -289,6 +289,7 @@ function initChatbot() {
         { keywords: ['parking', 'car', 'bike', 'vehicle'], answer: 'Limited parking is available nearby. For two-wheelers, parking is usually easy to find. Please ask at reception on arrival.' },
         { keywords: ['manipal', 'college', 'university', 'student'], answer: 'Manipal University is just 5 km away (10 min drive). We\'re popular with students and their visiting families due to our budget rates!' },
         { keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'namaste'], answer: 'Namaste! 🙏 Welcome to Hotel Bhavani Udupi. How can I help you today?\n\nYou can ask about room prices, location, check-in times, or booking.' },
+        { keywords: ['ok', 'okay', 'thanks', 'thank you', 'thank', 'got it', 'cool', 'great', 'perfect', 'nice', 'good', 'bye', 'goodbye', 'see you', 'that\'s all'], answer: 'Glad I could help! 😊 We look forward to welcoming you at Hotel Bhavani. Have a great day!\n\nIf you need anything else, just ask or reach us on <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a>.' },
     ];
 
     const fallbackAnswer = 'I\'m not sure about that. You can:\n\n📱 <a href="javascript:void(0)" onclick="openWhatsApp()">Ask on WhatsApp</a>\n📞 Call: <a href="tel:08202526980">0820-2526980</a>\n\nOr try asking about: rooms, prices, location, check-in, or booking.';
