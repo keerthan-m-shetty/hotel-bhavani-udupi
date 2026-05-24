@@ -54,9 +54,9 @@ Budget-friendly hotel website for **Hotel Bhavani Boarding & Lodging**, located 
 
 | Room | Price | Description |
 |------|-------|-------------|
-| Single Bedroom | ₹500/night | 1 bed, ideal for solo travelers |
-| Double Bedroom | ₹600/night | 2 beds, for couples or friends |
-| Triple Bedroom | ₹800/night | 3 beds, for families or groups |
+| Single Bedded Room | ₹500/night | 1 bed, ideal for solo travelers |
+| Double Bedded Room | ₹700/night | 2 beds, for couples or friends |
+| Three Bedded Room | ₹900/night | 3 beds, for families or groups |
 
 ## Hotel Info
 
