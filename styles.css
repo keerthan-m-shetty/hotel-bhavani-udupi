@@ -51,6 +51,9 @@
     border-bottom: 1px solid #2a2018;
     box-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
+[data-theme="dark"] .logo-text {
+    color: #ffffff;
+}
 [data-theme="dark"] .nav-menu a {
     color: #f5f0eb;
 }
