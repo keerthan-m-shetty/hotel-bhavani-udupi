@@ -28,6 +28,13 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b2a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hotel Bhavani">
 
     <!-- Performance: Preconnect to external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,7 +243,10 @@
     </script>
 </head>
 <body>
-    <header class="header">
+    <!-- Skip to main content for keyboard/screen reader users -->
+    <a href="#home" class="skip-link">Skip to main content</a>
+    
+    <header class="header" role="banner">
         <nav class="navbar">
             <div class="logo">
                 <span class="logo-icon">🏨</span>
@@ -377,7 +387,7 @@
                 <h2 class="section-title" data-i18n="reviews_title">Loved by Our Guests</h2>
                 <p class="section-subtitle" data-i18n="reviews_subtitle">Real reviews from real travelers</p>
             </div>
-            <div class="reviews-carousel" id="reviewsCarousel">
+            <div class="reviews-carousel" id="reviewsCarousel" role="region" aria-label="Guest reviews carousel" aria-roledescription="carousel">
                 <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" aria-label="Previous review">&#8249;</button>
                 <button class="carousel-arrow carousel-arrow-right" id="carouselNext" aria-label="Next review">&#8250;</button>
                 <div class="reviews-track" id="reviewsTrack">
@@ -583,6 +593,67 @@
         </div>
     </section>
 
+    <!-- How to Reach Section -->
+    <section id="reach" class="how-to-reach">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag" data-i18n="reach_tag">Directions</span>
+                <h2 class="section-title" data-i18n="reach_title">How to Reach Us</h2>
+                <p class="section-subtitle" data-i18n="reach_subtitle">Getting to Hotel Bhavani is easy from anywhere</p>
+            </div>
+            <div class="reach-grid">
+                <div class="reach-card fade-in">
+                    <div class="reach-icon">✈️</div>
+                    <h3 data-i18n="reach_airport_title">From Mangalore Airport</h3>
+                    <div class="reach-details">
+                        <p class="reach-distance" data-i18n="reach_airport_dist">60 km &bull; ~1.5 hours</p>
+                        <ul>
+                            <li data-i18n="reach_airport_taxi">Taxi/Cab: ₹1,500 - ₹2,000</li>
+                            <li data-i18n="reach_airport_bus">Bus: Take airport bus to Mangalore KSRTC, then bus to Udupi (₹150-200)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reach-card fade-in">
+                    <div class="reach-icon">🚂</div>
+                    <h3 data-i18n="reach_rail_title">From Udupi Railway Station</h3>
+                    <div class="reach-details">
+                        <p class="reach-distance" data-i18n="reach_rail_dist">5 km &bull; ~15 minutes</p>
+                        <ul>
+                            <li data-i18n="reach_rail_auto">Auto-rickshaw: ₹100 - ₹150</li>
+                            <li data-i18n="reach_rail_bus">Local bus: ₹15 (Bus Stand stop)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reach-card fade-in">
+                    <div class="reach-icon">🚌</div>
+                    <h3 data-i18n="reach_bus_title">From Udupi Bus Stand</h3>
+                    <div class="reach-details">
+                        <p class="reach-distance" data-i18n="reach_bus_dist">400m &bull; 5 min walk</p>
+                        <ul>
+                            <li data-i18n="reach_bus_walk">Walk towards Maruthi Veethika / Head Post Office</li>
+                            <li data-i18n="reach_bus_landmark">Landmark: Shyam Complex, near Diana Circle</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reach-card fade-in">
+                    <div class="reach-icon">🚗</div>
+                    <h3 data-i18n="reach_drive_title">Self-Drive / By Car</h3>
+                    <div class="reach-details">
+                        <p class="reach-distance" data-i18n="reach_drive_dist">NH-66 (Coastal Highway)</p>
+                        <ul>
+                            <li data-i18n="reach_drive_blr">From Bangalore: 400 km (~7 hrs via NH-75)</li>
+                            <li data-i18n="reach_drive_mng">From Mangalore: 60 km (~1.5 hrs via NH-66)</li>
+                            <li data-i18n="reach_drive_goa">From Goa: 300 km (~6 hrs via NH-66)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="reach-tip fade-in">
+                <p data-i18n="reach_tip">💡 <strong>Tip:</strong> Once you reach Udupi Bus Stand, our hotel is just 400m walk. Ask anyone for "Maruthi Veethika" or "Head Post Office" — everyone knows the way!</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -626,38 +697,48 @@
                 
                 <div class="contact-form fade-in">
                     <h3 data-i18n="form_title">Quick Reservation</h3>
-                    <form id="reservationForm">
+                    <form id="reservationForm" novalidate>
                         <div class="form-group">
-                            <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Your Name" required>
+                            <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Your Name" required aria-required="true" minlength="2" maxlength="100">
+                            <span class="form-error" id="nameError" role="alert"></span>
+                        </div>
+                        <!-- Honeypot - hidden from users, catches bots -->
+                        <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="Email" required>
+                                <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="Email" required aria-required="true">
+                                <span class="form-error" id="emailError" role="alert"></span>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" data-i18n-placeholder="form_phone" placeholder="Phone" required>
+                                <input type="tel" name="phone" data-i18n-placeholder="form_phone" placeholder="Phone (10 digits)" required aria-required="true" pattern="[0-9]{10}" maxlength="10" inputmode="numeric">
+                                <span class="form-error" id="phoneError" role="alert"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <select name="roomType" required>
+                            <select name="roomType" required aria-required="true">
                                 <option value="" data-i18n="form_select_room">Select Room Type</option>
                                 <option value="Single Bedded Room - ₹500">Single Bedded Room - ₹500</option>
                                 <option value="Double Bedded Room - ₹700">Double Bedded Room - ₹700</option>
                                 <option value="Three Bedded Room - ₹900">Three Bedded Room - ₹900</option>
                             </select>
+                            <span class="form-error" id="roomError" role="alert"></span>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" data-i18n="form_checkin">Check-in</label>
-                                <input type="date" name="checkin" required>
+                                <input type="date" name="checkin" required aria-required="true">
+                                <span class="form-error" id="checkinError" role="alert"></span>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" data-i18n="form_checkout">Check-out</label>
-                                <input type="date" name="checkout" required>
+                                <input type="date" name="checkout" required aria-required="true">
+                                <span class="form-error" id="checkoutError" role="alert"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" data-i18n-placeholder="form_message" placeholder="Special Requests (Optional)" rows="3"></textarea>
+                            <textarea name="message" data-i18n-placeholder="form_message" placeholder="Special Requests (Optional)" rows="3" maxlength="500"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full" data-i18n="form_submit">Send via WhatsApp</button>
                     </form>
@@ -701,16 +782,16 @@
     </footer>
 
     <!-- Chatbot Widget -->
-    <div class="chatbot" id="chatbot">
+    <div class="chatbot" id="chatbot" role="dialog" aria-label="Hotel Bhavani Chat Assistant" aria-live="polite">
         <div class="chatbot-header">
             <span class="chatbot-title">🏨 Hotel Bhavani</span>
             <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">&times;</button>
         </div>
-        <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-messages" id="chatbotMessages" aria-live="polite" aria-atomic="false">
             <div class="chat-msg bot">
                 <p>Namaste! 🙏 Welcome to Hotel Bhavani Udupi. How can I help you?</p>
             </div>
-            <div class="chatbot-suggestions" id="chatbotSuggestions">
+            <div class="chatbot-suggestions" id="chatbotSuggestions" role="group" aria-label="Suggested questions">
                 <button class="suggestion-btn" data-q="room price">Room prices</button>
                 <button class="suggestion-btn" data-q="location">Location</button>
                 <button class="suggestion-btn" data-q="check in time">Check-in time</button>
@@ -718,12 +799,12 @@
             </div>
         </div>
         <div class="chatbot-input">
-            <input type="text" id="chatbotInput" placeholder="Type your question..." autocomplete="off">
+            <input type="text" id="chatbotInput" placeholder="Type your question..." autocomplete="off" aria-label="Type your question">
             <button id="chatbotSend" aria-label="Send message">➤</button>
         </div>
     </div>
-    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
-        <span class="chatbot-toggle-icon">💬</span>
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat assistant" aria-expanded="false">
+        <span class="chatbot-toggle-icon" aria-hidden="true">💬</span>
     </button>
 
     <!-- Floating Location Button (Google Maps) -->
@@ -818,5 +899,13 @@
     });
     </script>
     <script src="script.js" defer></script>
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+    }
+    </script>
 </body>
 </html>
