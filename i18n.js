@@ -96,7 +96,7 @@ const translations = {
     reach_drive_blr: "From Bangalore: 400 km (~7 hrs via NH-75)",
     reach_drive_mng: "From Mangalore: 60 km (~1.5 hrs via NH-66)",
     reach_drive_goa: "From Goa: 300 km (~6 hrs via NH-66)",
-    reach_tip: "💡 <strong>Tip:</strong> Once you reach Udupi Bus Stand, our hotel is just 400m walk. Ask anyone for \"Maruthi Veethika\" or \"Head Post Office\" — everyone knows the way!"
+    reach_tip: "💡 <strong>Tip:</strong> Once you reach Udupi Bus Stand, our hotel is just 400m walk. Ask anyone for \"Maruthi Veethika\" or \"Head Post Office\" - everyone knows the way!"
   },
 
 
@@ -196,7 +196,7 @@ const translations = {
     reach_drive_blr: "ಬೆಂಗಳೂರಿನಿಂದ: 400 ಕಿ.ಮೀ (~7 ಗಂಟೆ NH-75 ಮೂಲಕ)",
     reach_drive_mng: "ಮಂಗಳೂರಿನಿಂದ: 60 ಕಿ.ಮೀ (~1.5 ಗಂಟೆ NH-66 ಮೂಲಕ)",
     reach_drive_goa: "ಗೋವಾದಿಂದ: 300 ಕಿ.ಮೀ (~6 ಗಂಟೆ NH-66 ಮೂಲಕ)",
-    reach_tip: "💡 <strong>ಸಲಹೆ:</strong> ಉಡುಪಿ ಬಸ್ ನಿಲ್ದಾಣ ತಲುಪಿದ ನಂತರ, ನಮ್ಮ ಹೋಟೆಲ್ ಕೇವಲ 400ಮೀ ನಡಿಗೆ. ಯಾರನ್ನಾದರೂ \"ಮಾರುತಿ ವೀಥಿಕಾ\" ಅಥವಾ \"ಹೆಡ್ ಪೋಸ್ಟ್ ಆಫೀಸ್\" ಕೇಳಿ — ಎಲ್ಲರಿಗೂ ಗೊತ್ತು!"
+    reach_tip: "💡 <strong>ಸಲಹೆ:</strong> ಉಡುಪಿ ಬಸ್ ನಿಲ್ದಾಣ ತಲುಪಿದ ನಂತರ, ನಮ್ಮ ಹೋಟೆಲ್ ಕೇವಲ 400ಮೀ ನಡಿಗೆ. ಯಾರನ್ನಾದರೂ \"ಮಾರುತಿ ವೀಥಿಕಾ\" ಅಥವಾ \"ಹೆಡ್ ಪೋಸ್ಟ್ ಆಫೀಸ್\" ಕೇಳಿ - ಎಲ್ಲರಿಗೂ ಗೊತ್ತು!"
   },
 
 
@@ -296,7 +296,7 @@ const translations = {
     reach_drive_blr: "बैंगलोर से: 400 कि.मी (~7 घंटे NH-75 से)",
     reach_drive_mng: "मंगलौर से: 60 कि.मी (~1.5 घंटे NH-66 से)",
     reach_drive_goa: "गोवा से: 300 कि.मी (~6 घंटे NH-66 से)",
-    reach_tip: "💡 <strong>सलाह:</strong> उडुपी बस स्टैंड पहुंचने के बाद, हमारा होटल सिर्फ 400मी पैदल है। किसी से भी \"मारुति वीथिका\" या \"हेड पोस्ट ऑफिस\" पूछें — सबको पता है!"
+    reach_tip: "💡 <strong>सलाह:</strong> उडुपी बस स्टैंड पहुंचने के बाद, हमारा होटल सिर्फ 400मी पैदल है। किसी से भी \"मारुति वीथिका\" या \"हेड पोस्ट ऑफिस\" पूछें - सबको पता है!"
   }
 };
 
