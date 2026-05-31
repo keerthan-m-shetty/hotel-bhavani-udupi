@@ -248,13 +248,24 @@
                 <span class="hamburger-line"></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#rooms">Rooms</a></li>
-                <li><a href="#nearby">Explore</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                <li><a href="#about" data-i18n="nav_about">About</a></li>
+                <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+                <li><a href="#rooms" data-i18n="nav_rooms">Rooms</a></li>
+                <li><a href="#nearby" data-i18n="nav_explore">Explore</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
             </ul>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" id="langToggle" aria-label="Change language">
+                    <span class="lang-current">EN</span>
+                    <span class="lang-arrow">▾</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-option active" data-lang="en">🇬🇧 English</button>
+                    <button class="lang-option" data-lang="kn">🇮🇳 ಕನ್ನಡ</button>
+                    <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
+                </div>
+            </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
             </button>
@@ -264,22 +275,22 @@
     <!-- Hero Section - Compact -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-badge">⏰ 24-Hour Checkout &bull; Budget Friendly &bull; City Center &bull; Since 1990</div>
-            <h1 class="hero-title">Hotel Bhavani Udupi</h1>
-            <p class="hero-subtitle">Budget hotel with <strong>24-hour checkout</strong>, just 5 mins walk from Sri Krishna Temple & Bus Stand</p>
+            <div class="hero-badge" data-i18n="hero_badge">⏰ 24-Hour Checkout &bull; Budget Friendly &bull; City Center &bull; Since 1990</div>
+            <h1 class="hero-title" data-i18n="hero_title">Hotel Bhavani Udupi</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Budget hotel with <strong>24-hour checkout</strong>, just 5 mins walk from Sri Krishna Temple & Bus Stand</p>
             <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary">Book Now - ₹500/night</a>
-                <a href="#rooms" class="btn btn-outline">View Rooms</a>
+                <a href="#contact" class="btn btn-primary" data-i18n="hero_book_btn">Book Now - ₹500/night</a>
+                <a href="#rooms" class="btn btn-outline" data-i18n="hero_rooms_btn">View Rooms</a>
             </div>
         </div>
         <div class="hero-info-bar">
             <div class="info-item">
                 <span class="info-icon">📍</span>
-                <span>Near Head Post Office, Maruthi Veethika, Udupi</span>
+                <span data-i18n="hero_location">Near Head Post Office, Maruthi Veethika, Udupi</span>
             </div>
             <div class="info-item">
                 <span class="info-icon">🕐</span>
-                <span>Check-in: 6 AM - 11 PM | 24-hour stay</span>
+                <span data-i18n="hero_timing">Check-in: 6 AM - 11 PM | 24-hour stay</span>
             </div>
             <div class="info-item">
                 <span class="info-icon">📞</span>
@@ -298,19 +309,19 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-number">4.2</span>
-                    <span class="stat-label">Google Rating</span>
+                    <span class="stat-label" data-i18n="stat_rating">Google Rating</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">24hr</span>
-                    <span class="stat-label">Checkout Policy</span>
+                    <span class="stat-label" data-i18n="stat_checkout">Checkout Policy</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">₹500</span>
-                    <span class="stat-label">Starting Price</span>
+                    <span class="stat-label" data-i18n="stat_price">Starting Price</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">600m</span>
-                    <span class="stat-label">From Krishna Temple</span>
+                    <span class="stat-label" data-i18n="stat_temple">From Krishna Temple</span>
                 </div>
             </div>
         </div>
@@ -320,13 +331,13 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-tag">About Us</span>
-                <h2 class="section-title">Welcome to Hotel Bhavani</h2>
-                <p class="section-subtitle">Your home away from home in Udupi</p>
+                <span class="section-tag" data-i18n="about_tag">About Us</span>
+                <h2 class="section-title" data-i18n="about_title">Welcome to Hotel Bhavani</h2>
+                <p class="section-subtitle" data-i18n="about_subtitle">Your home away from home in Udupi</p>
             </div>
             <div class="about-grid">
                 <div class="about-text fade-in">
-                    <p>Located near Head Post Office, Maruthi Veethika (ಮಾರುತಿ ವೀಥಿಕಾ) in the cultural heart of Udupi, <strong>Hotel Bhavani Boarding & Lodging</strong> has been serving guests with authentic Karnataka hospitality for over 30 years. Whether you're a pilgrim visiting <a href="budget-hotel-near-krishna-temple-udupi.html">Sri Krishna Temple</a> (ಶ್ರೀ ಕೃಷ್ಣ ಮಠ), a tourist heading to <a href="hotel-near-malpe-beach-udupi.html">Malpe Beach</a> (ಮಲ್ಪೆ ಬೀಚ್), or arriving at <a href="cheap-hotel-near-bus-stand-udupi.html">Udupi Bus Stand</a> (ಉಡುಪಿ ಬಸ್ ನಿಲ್ದಾಣ), we offer the most affordable stay with our unique <strong>24-hour checkout</strong> policy.</p>
+                    <p data-i18n="about_desc">Located near Head Post Office, Maruthi Veethika (ಮಾರುತಿ ವೀಥಿಕಾ) in the cultural heart of Udupi, <strong>Hotel Bhavani Boarding & Lodging</strong> has been serving guests with authentic Karnataka hospitality for over 30 years. Whether you're a pilgrim visiting <a href="budget-hotel-near-krishna-temple-udupi.html">Sri Krishna Temple</a> (ಶ್ರೀ ಕೃಷ್ಣ ಮಠ), a tourist heading to <a href="hotel-near-malpe-beach-udupi.html">Malpe Beach</a> (ಮಲ್ಪೆ ಬೀಚ್), or arriving at <a href="cheap-hotel-near-bus-stand-udupi.html">Udupi Bus Stand</a> (ಉಡುಪಿ ಬಸ್ ನಿಲ್ದಾಣ), we offer the most affordable stay with our unique <strong>24-hour checkout</strong> policy.</p>
                     <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
                         <img src="images/hotel-bhavani-exterior.webp" alt="Hotel Bhavani Boarding and Lodging exterior view from across the road in Udupi" loading="lazy" style="width: 100%; height: 200px; border-radius: 8px; object-fit: cover; object-position: center;">
                         <img src="images/reception-1.webp" alt="Hotel Bhavani reception desk and lobby area" loading="lazy" style="width: 100%; height: 200px; border-radius: 8px; object-fit: cover; object-position: center;">
@@ -335,23 +346,23 @@
                 <div class="features-grid">
                     <div class="feature-card fade-in">
                         <span class="feature-icon">🛏️</span>
-                        <h3>Clean Rooms</h3>
-                        <p>Well-maintained rooms with fresh linen and essential amenities</p>
+                        <h3 data-i18n="feature_clean_title">Clean Rooms</h3>
+                        <p data-i18n="feature_clean_desc">Well-maintained rooms with fresh linen and essential amenities</p>
                     </div>
                     <div class="feature-card fade-in">
                         <span class="feature-icon">⏰</span>
-                        <h3>24-Hour Checkout</h3>
-                        <p>No 12 PM rush, full 24 hours from your check-in time</p>
+                        <h3 data-i18n="feature_checkout_title">24-Hour Checkout</h3>
+                        <p data-i18n="feature_checkout_desc">No 12 PM rush, full 24 hours from your check-in time</p>
                     </div>
                     <div class="feature-card fade-in">
                         <span class="feature-icon">🏛️</span>
-                        <h3>Prime Location</h3>
-                        <p>5 min walk to Sri Krishna Temple & Udupi Bus Stand</p>
+                        <h3 data-i18n="feature_location_title">Prime Location</h3>
+                        <p data-i18n="feature_location_desc">5 min walk to Sri Krishna Temple & Udupi Bus Stand</p>
                     </div>
                     <div class="feature-card fade-in">
                         <span class="feature-icon">💰</span>
-                        <h3>Best Value</h3>
-                        <p>Most affordable rates in Udupi city center, from ₹500/night</p>
+                        <h3 data-i18n="feature_value_title">Best Value</h3>
+                        <p data-i18n="feature_value_desc">Most affordable rates in Udupi city center, from ₹500/night</p>
                     </div>
                 </div>
             </div>
@@ -362,9 +373,9 @@
     <section id="reviews" class="reviews">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-tag">Testimonials</span>
-                <h2 class="section-title">Loved by Our Guests</h2>
-                <p class="section-subtitle">Real reviews from real travelers</p>
+                <span class="section-tag" data-i18n="reviews_tag">Testimonials</span>
+                <h2 class="section-title" data-i18n="reviews_title">Loved by Our Guests</h2>
+                <p class="section-subtitle" data-i18n="reviews_subtitle">Real reviews from real travelers</p>
             </div>
             <div class="reviews-carousel" id="reviewsCarousel">
                 <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" aria-label="Previous review">&#8249;</button>
@@ -467,57 +478,57 @@
     <section id="rooms" class="rooms">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-tag">Accommodation</span>
-                <h2 class="section-title">Our Rooms</h2>
-                <p class="section-subtitle">Simple, clean, and comfortable</p>
+                <span class="section-tag" data-i18n="rooms_tag">Accommodation</span>
+                <h2 class="section-title" data-i18n="rooms_title">Our Rooms</h2>
+                <p class="section-subtitle" data-i18n="rooms_subtitle">Simple, clean, and comfortable</p>
             </div>
             <div class="rooms-grid">
                 <div class="room-card fade-in">
-                    <div class="room-badge">Popular</div>
+                    <div class="room-badge" data-i18n="room_popular">Popular</div>
                     <div class="room-header">
-                        <h3>Single Bedded Room</h3>
+                        <h3 data-i18n="room_single_title">Single Bedded Room</h3>
                         <div class="room-price">₹500<span>/night</span></div>
                     </div>
-                    <p>One room with a single bed. Ideal for solo travelers on a budget.</p>
+                    <p data-i18n="room_single_desc">One room with a single bed. Ideal for solo travelers on a budget.</p>
                     <ul class="room-amenities">
-                        <li>1 Bed</li>
-                        <li>Attached Bathroom</li>
-                        <li>Fan & Light</li>
-                        <li>Clean Linen</li>
+                        <li data-i18n="room_bed_1">1 Bed</li>
+                        <li data-i18n="room_bathroom">Attached Bathroom</li>
+                        <li data-i18n="room_fan">Fan & Light</li>
+                        <li data-i18n="room_linen">Clean Linen</li>
                     </ul>
-                    <button class="btn btn-primary btn-full" onclick="bookRoom('Single Bedded Room', '500')">Book Now</button>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Single Bedded Room', '500')" data-i18n="room_book_btn">Book Now</button>
                 </div>
                 <div class="room-card featured fade-in">
-                    <div class="room-badge">Best Value</div>
+                    <div class="room-badge" data-i18n="room_best_value">Best Value</div>
                     <img src="images/double-bedded-room.webp" alt="Double bedded room with 2 beds at Hotel Bhavani Udupi" loading="lazy" style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover; object-position: center; margin-bottom: 1rem;">
                     <div class="room-header">
-                        <h3>Double Bedded Room</h3>
+                        <h3 data-i18n="room_double_title">Double Bedded Room</h3>
                         <div class="room-price">₹700<span>/night</span></div>
                     </div>
-                    <p>One room with two beds. Perfect for couples or friends traveling together.</p>
+                    <p data-i18n="room_double_desc">One room with two beds. Perfect for couples or friends traveling together.</p>
                     <ul class="room-amenities">
-                        <li>2 Beds</li>
-                        <li>Attached Bathroom</li>
-                        <li>Fan & Light</li>
-                        <li>Clean Linen</li>
+                        <li data-i18n="room_bed_2">2 Beds</li>
+                        <li data-i18n="room_bathroom">Attached Bathroom</li>
+                        <li data-i18n="room_fan">Fan & Light</li>
+                        <li data-i18n="room_linen">Clean Linen</li>
                     </ul>
-                    <button class="btn btn-primary btn-full" onclick="bookRoom('Double Bedded Room', '700')">Book Now</button>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Double Bedded Room', '700')" data-i18n="room_book_btn">Book Now</button>
                 </div>
                 <div class="room-card fade-in">
-                    <div class="room-badge">Family</div>
+                    <div class="room-badge" data-i18n="room_family">Family</div>
                     <img src="images/three-bedded-room.webp" alt="Three bedded room with 3 beds at Hotel Bhavani Udupi" loading="lazy" style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover; object-position: center; margin-bottom: 1rem;">
                     <div class="room-header">
-                        <h3>Three Bedded Room</h3>
+                        <h3 data-i18n="room_triple_title">Three Bedded Room</h3>
                         <div class="room-price">₹900<span>/night</span></div>
                     </div>
-                    <p>One room with three beds. Great for families or small groups.</p>
+                    <p data-i18n="room_triple_desc">One room with three beds. Great for families or small groups.</p>
                     <ul class="room-amenities">
-                        <li>3 Beds</li>
-                        <li>Attached Bathroom</li>
-                        <li>Fan & Light</li>
-                        <li>Clean Linen</li>
+                        <li data-i18n="room_bed_3">3 Beds</li>
+                        <li data-i18n="room_bathroom">Attached Bathroom</li>
+                        <li data-i18n="room_fan">Fan & Light</li>
+                        <li data-i18n="room_linen">Clean Linen</li>
                     </ul>
-                    <button class="btn btn-primary btn-full" onclick="bookRoom('Three Bedded Room', '900')">Book Now</button>
+                    <button class="btn btn-primary btn-full" onclick="bookRoom('Three Bedded Room', '900')" data-i18n="room_book_btn">Book Now</button>
                 </div>
             </div>
         </div>
@@ -527,9 +538,9 @@
     <section id="nearby" class="nearby">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-tag">Explore Udupi</span>
-                <h2 class="section-title">Nearby Attractions</h2>
-                <p class="section-subtitle">Discover what makes Udupi special</p>
+                <span class="section-tag" data-i18n="nearby_tag">Explore Udupi</span>
+                <h2 class="section-title" data-i18n="nearby_title">Nearby Attractions</h2>
+                <p class="section-subtitle" data-i18n="nearby_subtitle">Discover what makes Udupi special</p>
             </div>
             <div class="nearby-grid">
                 <div class="nearby-card fade-in">
@@ -576,34 +587,34 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header fade-in">
-                <span class="section-tag">Get in Touch</span>
-                <h2 class="section-title">Book Your Stay</h2>
-                <p class="section-subtitle">Call us or fill the form - we'll confirm on WhatsApp</p>
+                <span class="section-tag" data-i18n="contact_tag">Get in Touch</span>
+                <h2 class="section-title" data-i18n="contact_title">Book Your Stay</h2>
+                <p class="section-subtitle" data-i18n="contact_subtitle">Call us or fill the form - we'll confirm on WhatsApp</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-card fade-in">
                         <div class="contact-card-icon">📞</div>
                         <div>
-                            <h4>Call Us</h4>
+                            <h4 data-i18n="contact_call">Call Us</h4>
                             <a href="tel:08202526980">0820-2526980</a>
-                            <p class="contact-note">6 AM to 10 PM &bull; Call one day before</p>
+                            <p class="contact-note" data-i18n="contact_call_note">6 AM to 10 PM &bull; Call one day before</p>
                         </div>
                     </div>
                     <div class="contact-card fade-in">
                         <div class="contact-card-icon">💬</div>
                         <div>
-                            <h4>WhatsApp</h4>
-                            <a href="javascript:void(0)" onclick="openWhatsApp()">Message Us Instantly</a>
-                            <p class="contact-note">Quick booking & inquiries</p>
+                            <h4 data-i18n="contact_whatsapp">WhatsApp</h4>
+                            <a href="javascript:void(0)" onclick="openWhatsApp()" data-i18n="contact_whatsapp_link">Message Us Instantly</a>
+                            <p class="contact-note" data-i18n="contact_whatsapp_note">Quick booking & inquiries</p>
                         </div>
                     </div>
                     <div class="contact-card fade-in">
                         <div class="contact-card-icon">📍</div>
                         <div>
-                            <h4>Location</h4>
+                            <h4 data-i18n="contact_location">Location</h4>
                             <p>Hotel Bhavani, Shyam Complex<br>Maruthi Veethika, Udupi, Karnataka 576101</p>
-                            <a href="https://maps.app.goo.gl/rUqgw5P26rpN5SKT9" target="_blank">Open in Google Maps</a>
+                            <a href="https://maps.app.goo.gl/rUqgw5P26rpN5SKT9" target="_blank" data-i18n="contact_maps_link">Open in Google Maps</a>
                         </div>
                     </div>
                     <div class="contact-map fade-in">
@@ -614,22 +625,22 @@
                 </div>
                 
                 <div class="contact-form fade-in">
-                    <h3>Quick Reservation</h3>
+                    <h3 data-i18n="form_title">Quick Reservation</h3>
                     <form id="reservationForm">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Your Name" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" placeholder="Phone" required>
+                                <input type="tel" name="phone" data-i18n-placeholder="form_phone" placeholder="Phone" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <select name="roomType" required>
-                                <option value="">Select Room Type</option>
+                                <option value="" data-i18n="form_select_room">Select Room Type</option>
                                 <option value="Single Bedded Room - ₹500">Single Bedded Room - ₹500</option>
                                 <option value="Double Bedded Room - ₹700">Double Bedded Room - ₹700</option>
                                 <option value="Three Bedded Room - ₹900">Three Bedded Room - ₹900</option>
@@ -637,18 +648,18 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Check-in</label>
+                                <label class="form-label" data-i18n="form_checkin">Check-in</label>
                                 <input type="date" name="checkin" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Check-out</label>
+                                <label class="form-label" data-i18n="form_checkout">Check-out</label>
                                 <input type="date" name="checkout" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Special Requests (Optional)" rows="3"></textarea>
+                            <textarea name="message" data-i18n-placeholder="form_message" placeholder="Special Requests (Optional)" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full">Send via WhatsApp</button>
+                        <button type="submit" class="btn btn-primary btn-full" data-i18n="form_submit">Send via WhatsApp</button>
                     </form>
                 </div>
             </div>
@@ -674,7 +685,7 @@
                     <span class="logo-icon">🏨</span>
                     <span>Hotel Bhavani Udupi</span>
                 </div>
-                <p class="footer-tagline">Budget-friendly stays with 24-hour checkout in the heart of temple city since 1990 | ಉಡುಪಿಯ ಬಡ್ಜೆಟ್ ಹೋಟೆಲ್</p>
+                <p class="footer-tagline" data-i18n="footer_tagline">Budget-friendly stays with 24-hour checkout in the heart of temple city since 1990 | ಉಡುಪಿಯ ಬಡ್ಜೆಟ್ ಹೋಟೆಲ್</p>
                 <div class="footer-links">
                     <a href="budget-hotel-near-krishna-temple-udupi.html">Near Krishna Temple</a>
                     <a href="cheap-hotel-near-bus-stand-udupi.html">Near Bus Stand</a>
@@ -735,6 +746,7 @@
 
     <!-- Leaflet JS for interactive map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+    <script src="i18n.js"></script>
     <script>
     // Interactive Map Initialization
     document.addEventListener('DOMContentLoaded', function() {
