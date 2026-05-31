@@ -1,0 +1,34 @@
+{
+  "name": "Hotel Bhavani Udupi",
+  "short_name": "Hotel Bhavani",
+  "description": "Budget hotel in Udupi with 24-hour checkout. Near Krishna Temple & Bus Stand. Rooms from ₹500/night.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b2a1a",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["travel", "hotel"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a Room",
+      "short_name": "Book",
+      "url": "/#contact",
+      "description": "Quick room reservation via WhatsApp"
+    },
+    {
+      "name": "Get Directions",
+      "short_name": "Directions",
+      "url": "https://maps.app.goo.gl/Fn6qMLiw7N8J1hVw6",
+      "description": "Open hotel location in Google Maps"
+    }
+  ]
+}

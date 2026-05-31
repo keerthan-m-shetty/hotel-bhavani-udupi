@@ -236,25 +236,100 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            // Honeypot check - if filled, silently reject (it's a bot)
+            const honeypot = this.querySelector('input[name="website"]');
+            if (honeypot && honeypot.value) {
+                // Fake success for bots
+                this.reset();
+                return;
+            }
+
+            const fd = new FormData(this);
+            const name = fd.get('name').trim();
+            const email = fd.get('email').trim();
+            const userPhone = fd.get('phone').trim();
+            const roomType = fd.get('roomType');
+            const checkin = fd.get('checkin');
+            const checkout = fd.get('checkout');
+            const message = fd.get('message');
+
+            // Clear previous errors
+            document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+            document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
+            let hasError = false;
+
+            // Name validation
+            if (!name || name.length < 2) {
+                showFieldError('nameError', 'Please enter your name (min 2 characters)');
+                this.querySelector('input[name="name"]').classList.add('invalid');
+                hasError = true;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                showFieldError('emailError', 'Please enter a valid email address');
+                this.querySelector('input[name="email"]').classList.add('invalid');
+                hasError = true;
+            }
+
+            // Phone validation (10 digit Indian number)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!userPhone || !phoneRegex.test(userPhone)) {
+                showFieldError('phoneError', 'Please enter a valid 10-digit phone number');
+                this.querySelector('input[name="phone"]').classList.add('invalid');
+                hasError = true;
+            }
+
+            // Room type validation
+            if (!roomType) {
+                showFieldError('roomError', 'Please select a room type');
+                this.querySelector('select[name="roomType"]').classList.add('invalid');
+                hasError = true;
+            }
+
+            // Date validation
+            if (!checkin) {
+                showFieldError('checkinError', 'Please select check-in date');
+                hasError = true;
+            }
+            if (!checkout) {
+                showFieldError('checkoutError', 'Please select check-out date');
+                hasError = true;
+            }
+            if (checkin && checkout && new Date(checkout) <= new Date(checkin)) {
+                showFieldError('checkoutError', 'Check-out must be after check-in');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // All valid - send via WhatsApp
             try {
                 const phone = await getPhoneNumber();
-                const fd = new FormData(this);
-                const name = fd.get('name'), email = fd.get('email'),
-                      userPhone = fd.get('phone'), roomType = fd.get('roomType'),
-                      checkin = fd.get('checkin'), checkout = fd.get('checkout'),
-                      message = fd.get('message');
-
-                if (name && email && userPhone && roomType && checkin && checkout) {
-                    const msg = `Hotel Bhavani Udupi - Booking\n\n👤 ${name}\n📧 ${email}\n📱 ${userPhone}\n🏨 ${roomType}\n📅 ${checkin} to ${checkout}\n💬 ${message || 'None'}\n\nPlease confirm. Thank you!`;
-                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                    this.reset();
-                } else {
-                    alert('Please fill all required fields.');
-                }
-            } catch (e) {
-                alert('Unable to process. Please try again.');
+                const msg = `Hotel Bhavani Udupi - Booking\n\n👤 ${name}\n📧 ${email}\n📱 ${userPhone}\n🏨 ${roomType}\n📅 ${checkin} to ${checkout}\n💬 ${message || 'None'}\n\nPlease confirm. Thank you!`;
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+                this.reset();
+                document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+            } catch (err) {
+                alert('Unable to process. Please try again or call us at 0820-2526980.');
             }
         });
+
+        // Real-time phone input - numbers only
+        const phoneInput = form.querySelector('input[name="phone"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+            });
+        }
+    }
+
+    function showFieldError(id, message) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = message;
     }
 });
 
@@ -292,17 +367,19 @@ function initChatbot() {
         { keywords: ['ok', 'okay', 'thanks', 'thank you', 'thank', 'got it', 'cool', 'great', 'perfect', 'nice', 'good', 'bye', 'goodbye', 'see you', 'that\'s all'], answer: 'Glad I could help! 😊 We look forward to welcoming you at Hotel Bhavani. Have a great day!\n\nIf you need anything else, just ask or reach us on <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a>.' },
     ];
 
-    const fallbackAnswer = 'I\'m not sure about that. You can:\n\n📱 <a href="javascript:void(0)" onclick="openWhatsApp()">Ask on WhatsApp</a>\n📞 Call: <a href="tel:08202526980">0820-2526980</a>\n\nOr try asking about: rooms, prices, location, check-in, or booking.';
+    const fallbackAnswer = 'I\'m sorry, I don\'t have information on that topic. But I can help you with:\n\n• Room prices & availability\n• Location & directions\n• Check-in/check-out times\n• Booking a room\n• Nearby attractions\n\nOr you can contact us directly:\n📱 <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp</a> (instant reply)\n📞 <a href="tel:08202526980">0820-2526980</a> (6 AM - 10 PM)';
 
     function openChat() {
         chatbot.classList.add('open');
         toggle.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
         input.focus();
     }
 
     function closeChat() {
         chatbot.classList.remove('open');
         toggle.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
     }
 
     function addMessage(text, sender) {
@@ -315,6 +392,12 @@ function initChatbot() {
 
     function getAnswer(question) {
         const q = question.toLowerCase().trim();
+        
+        // Check if input is too short or nonsensical
+        if (q.length < 2) {
+            return 'Please type a longer question so I can help you better! You can ask about rooms, prices, location, or booking.';
+        }
+
         for (const faq of faqs) {
             for (const keyword of faq.keywords) {
                 if (q.includes(keyword)) {
@@ -322,6 +405,8 @@ function initChatbot() {
                 }
             }
         }
+        
+        // Improved fallback with suggestions
         return fallbackAnswer;
     }
 
@@ -339,7 +424,36 @@ function initChatbot() {
         setTimeout(() => {
             const answer = getAnswer(text);
             addMessage(answer, 'bot');
+            
+            // Show quick suggestions again after fallback
+            if (answer === fallbackAnswer) {
+                showFallbackSuggestions();
+            }
         }, 400);
+    }
+
+    function showFallbackSuggestions() {
+        const sugDiv = document.createElement('div');
+        sugDiv.className = 'chatbot-suggestions';
+        sugDiv.setAttribute('role', 'group');
+        sugDiv.setAttribute('aria-label', 'Suggested questions');
+        sugDiv.innerHTML = `
+            <button class="suggestion-btn" data-q="room price">Room prices</button>
+            <button class="suggestion-btn" data-q="location">Location</button>
+            <button class="suggestion-btn" data-q="book a room">Book a room</button>
+            <button class="suggestion-btn" data-q="check in time">Check-in time</button>
+        `;
+        messages.appendChild(sugDiv);
+        messages.scrollTop = messages.scrollHeight;
+        
+        // Attach click handlers to new suggestions
+        sugDiv.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                input.value = btn.dataset.q;
+                sugDiv.remove();
+                handleSend();
+            });
+        });
     }
 
     // Event listeners
