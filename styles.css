@@ -29,19 +29,28 @@
     --bg-tertiary: #2e2318;
     --bg-card: #2a2018;
     --text-primary: #f5f0eb;
-    --text-secondary: #d4c8bc;
-    --text-muted: #9c8e80;
+    --text-secondary: #e8ddd2;
+    --text-muted: #b0a090;
     --accent: #f0a030;
     --accent-hover: #fbb040;
-    --accent-light: rgba(240, 160, 48, 0.12);
+    --accent-light: rgba(240, 160, 48, 0.15);
     --green: #4caf7a;
     --green-light: rgba(76, 175, 122, 0.12);
     --border: #3d3028;
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
     --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
     --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
-    --header-bg: rgba(26,20,16,0.95);
+    --header-bg: rgba(15,12,8,0.98);
     --hero-bg: linear-gradient(135deg, #0f0b08 0%, #1a1410 50%, #241c16 100%);
+}
+
+/* Dark mode: stronger header contrast */
+[data-theme="dark"] .header {
+    border-bottom-color: #4a3d30;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+[data-theme="dark"] .nav-menu a {
+    color: #f0e8df;
 }
 
 
